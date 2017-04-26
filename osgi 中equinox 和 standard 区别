@@ -1,0 +1,25 @@
+osgi 中equinox  和 standard  区别 ：
+
+
+Equinox和standard发现一个小小的区别：
+
+对于Equinox，MANIFEST.MF中多了一项默认设置：
+
+Bundle-ActivationPolicy: lazy
+
+standard的MANIFEST.MF中没有发现。
+
+
+
+
+
+
+标记Bundle-ActivationPolicy设置Bundle的加载策略，该参数目前只有一个值：lazy，设置该参数后，Bundle将延迟激活，延迟至有其他的Bundle请求加载该Bundle中的类或资源时它才会被激活，如果不设置这个参数，那么Bundle启动时就会被激活。 示例： Bundle-ActivationPolicy: lazy
+
+
+
+
+
+
+
+如果准备开发一个标准的OSGi Bundle，那么应该选择“an OSGi   framework”，后面的下拉框有“standard”和“Equinox”两个选项。它们的区别是当选择standard时，只能使用OSGi规范所定义的标准API，这样建立出来的OSGi Bundle在任何一个符合OSGi规范的实现中都能执行；而选择Equinox时，除了可以使用OSGi的标准API外，还可以使用Equinox框架自己的扩展功能，譬如专有API、扩展点机制、Buddy加载器和P2更新平台等，不过这样建立的OSGi Bundle只能运行于Equinox框架之上，无法在Felix、Knopflerfish等其他OSGi实现框架上运行。
